@@ -32,10 +32,10 @@
                             <a href="{% url 'users:detail' article.user.username %}">{{ article.user.get_profile_name }}</a>
                             发表于{{ article.created_at }}
 
-                            {% for tag in article.tags.names %}
-                                <a href="#"><span class="badge badge-info">{{ tag }}</span></a>
-                            {% endfor %}
-                            <a style="float:right" href="{% url 'articles:article' article.slug %}" class="btn-sm btn-primary">阅读全文→</a>
+{#                            {% for tag in article.tags.names %}#}
+{#                                <a href="#"><span class="badge badge-info">{{ tag }}</span></a>#}
+{#                            {% endfor %}#}
+{#                            <a style="float:right" href="{% url 'articles:article' article.slug %}" class="btn-sm btn-primary">阅读全文→</a>#}
                         </div>
                     </div>
                     {% empty %}

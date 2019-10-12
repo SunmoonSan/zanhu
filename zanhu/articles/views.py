@@ -12,23 +12,23 @@ class ArticlesListView(LoginRequiredMixin, ListView):
     """已发布的文章列表"""
     model = Article
     paginate_by = 20
-    context_object_name = 'articles'
-    template_name = 'articles/article_list.html'
+    context_object_name = "articles"
+    template_name = "articles/article_list.html"  # 可省略
 
     def get_context_data(self, *args, **kwargs):
         context = super(ArticlesListView, self).get_context_data(*args, **kwargs)
         context['popular_tags'] = Article.objects.get_counted_tags()
         return context
 
-    def get_queryset(self):
-        print(Article.objects.get_published())
+    def get_queryset(self, **kwargs):
         return Article.objects.get_published()
 
 
-class DraftListView(ArticlesListView):
+class DraftsListView(ArticlesListView):
+    """草稿箱文章列表"""
 
-    def get_queryset(self):
-        """当前用户的草稿"""
+    def get_queryset(self, **kwargs):
+        # 当前用户的草稿
         return Article.objects.filter(user=self.request.user).get_drafts()
 
 
